@@ -10,7 +10,7 @@
     "paths": {
       "@services/*": ["services/*"],
       "@controllers/*": ["controllers/*"],
-      "@config/*": ["config/*"]
+      "@middlewares/*": ["middlewares/*"]
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,
