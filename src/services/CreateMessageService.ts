@@ -1,6 +1,7 @@
 import { Message } from '@prisma/client'
 
 import { prismaClient } from './../prisma'
+import { io } from './../App'
 
 export class CreateMessageService {
   public async execute (text: string, user_id: string): Promise<Message> {
@@ -13,6 +14,18 @@ export class CreateMessageService {
         user: true
       }
     })
+
+    const infoMessage = {
+      text: message.text,
+      user_id: message.user_id,
+      created_at: message.created_at,
+      user: {
+        name: message.user.name,
+        avatar: message.user.avatar_url
+      }
+    }
+
+    io.emit('new_message', infoMessage)
 
     return message
   }
